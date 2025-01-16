@@ -15,12 +15,10 @@ let navbarHeading = document.createElement('h2');
 navbarHeading.innerHTML = 'Coding <span style="color:#79afdb">Addict</span>';
 navbarHeading.className = 'navbar-heading';
 
-
 body.appendChild(hamburger);
 body.appendChild(sideNavbar);
 sideNavbar.appendChild(closeBtn);
 sideNavbar.appendChild(navbarHeading);
-
 
 let ul = document.createElement('ul');
 
@@ -47,29 +45,29 @@ ul.appendChild(contact);
 
 sideNavbar.appendChild(ul);
 
-let iconItems=document.createElement('div');
-iconItems.className='icone-items';
+let iconItems = document.createElement('div');
+iconItems.className = 'icone-items';
 iconItems.classList.add('ul');
 
-let facebook =document.createElement('li');
-facebook.innerHTML='<a href="#"><i class="fa-brands fa-facebook"></i></a>';
-facebook.className='icon';
+let facebook = document.createElement('li');
+facebook.innerHTML = '<a href="#"><i class="fa-brands fa-facebook"></i></a>';
+facebook.className = 'icon';
 
-let twitter =document.createElement('li');
-twitter.innerHTML='<a href="#"><i class="fa-brands fa-twitter"></i></a>';
-twitter.className='icon';
+let twitter = document.createElement('li');
+twitter.innerHTML = '<a href="#"><i class="fa-brands fa-twitter"></i></a>';
+twitter.className = 'icon';
 
-let be=document.createElement('li');
-be.innerHTML='<a href="#"><i class="fa-brands fa-behance"></i><a>';
-be.className='icon';
+let be = document.createElement('li');
+be.innerHTML = '<a href="#"><i class="fa-brands fa-behance"></i></a>';
+be.className = 'icon';
 
-let linkedin =document.createElement('li');
-linkedin.innerHTML='<a href="#"><i class="fa-brands fa-linkedin"></i></a>';
-linkedin.className='icon';
+let linkedin = document.createElement('li');
+linkedin.innerHTML = '<a href="#"><i class="fa-brands fa-linkedin"></i></a>';
+linkedin.className = 'icon';
 
-let gem=document.createElement('li');
-gem.innerHTML='<a href="#"><i class="fa-solid fa-gem"></i></a>';
-gem.className='icon';
+let gem = document.createElement('li');
+gem.innerHTML = '<a href="#"><i class="fa-solid fa-gem"></i></a>';
+gem.className = 'icon';
 
 iconItems.appendChild(facebook);
 iconItems.appendChild(twitter);
@@ -79,12 +77,21 @@ iconItems.appendChild(gem);
 
 sideNavbar.appendChild(iconItems);
 
-hamburger.addEventListener('click', () => {
+hamburger.addEventListener('click', (event) => {
+  event.stopPropagation(); // Prevent body click from firing
   sideNavbar.classList.add('open');
-  sideNavbar.style.display='block';
+  sideNavbar.style.display = 'block';
 });
 
-closeBtn.addEventListener('click', () => {
+closeBtn.addEventListener('click', (event) => {
+  event.stopPropagation(); // Prevent body click from firing
   sideNavbar.classList.remove('open');
-  sideNavbar.style.display='none';
+  sideNavbar.style.display = 'none';
+});
+
+body.addEventListener('click', (event) => {
+  if (!sideNavbar.contains(event.target) && !hamburger.contains(event.target)) {
+    sideNavbar.classList.remove('open');
+    sideNavbar.style.display = 'none';
+  }
 });
